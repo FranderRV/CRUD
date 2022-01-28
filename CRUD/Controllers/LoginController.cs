@@ -113,7 +113,7 @@ namespace GISSA.Controllers
 
 
            // return CreatedAtAction("Login", new { NombreUsuario = usuario.NombreCompleto, Clave = claveTemporal });
-            return RedirectToAction("Login", "Login", new { UsuarioNombre = usuario.NombreCompleto,Clave=claveTemporal});
+            return RedirectToAction("Login", "Login", new { UsuarioNombre = usuario.NombreUsuario,Clave=claveTemporal});
            
         }
 

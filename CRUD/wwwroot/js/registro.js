@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     tipoIdentificacion()
-    console.log(Number($('#idUsuario').val()) > 0);
+
     if (Number($('#idUsuario').val()) > 0) {
         $("#clave").removeAttr("required");
     }
@@ -9,6 +9,7 @@
             $("#formulario").submit();
         }
     });
+
     $('#btnregistro').click(function (e) {
         e.preventDefault();
         agregarUsuario()
@@ -45,6 +46,7 @@ function validaciones() {
                 text: 'La contraseña debe poseer: Mínimo 6 caracteres, letras y números',
                 footer: ''
             })
+            return false
         }
     } else {
         Swal.fire({
@@ -53,6 +55,7 @@ function validaciones() {
             text: 'Debe añadir más de 3 habilidades blandas',
             footer: ''
         })
+        return false
     }
 
     
