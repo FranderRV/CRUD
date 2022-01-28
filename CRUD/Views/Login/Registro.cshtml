@@ -1,0 +1,105 @@
+﻿@using GISSA.Models
+@{
+    ViewData["Title"] = "Registro";
+    Layout = "";
+    TestUsuario TestUsuario = ViewData["TestUsuario"] as TestUsuario;
+    List<int> listaHabilidadesUsuario = ViewData["habilidadesUsuario"] as List<int>;
+
+}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href="~/css/register.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+<div class="container">
+
+    <h1 class="mt-5 text-center">REGISTRO FORMULARIOS</h1>
+
+    <div class="mt-5">
+        <form method="POST" asp-action="Registrar" asp-controller="Login">
+
+            <input type="hidden" value="@TestUsuario.IdUsuario" id="idUsuario" name="idUsuario">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label for="my-select">Tipo de Usuario</label>
+                        <select id="my-select" class="form-control" name="tipoUsuario">
+                            <option value="A" selected>Administrador</option>
+                            <option value="C">Consultor</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="my-select">Tipo de Identificación</label>
+                        <select id="tipoIdentificacion" class="form-control" name="tipoIdentificacion">
+                            <option value="N" selected>Nacional</option>
+                            <option value="E">Extranjero</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="my-input">Cédula</label>
+                        <input id="cedula" class="form-control" type="text" name="cedula" value="@TestUsuario.Cedula" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="my-select">Habilidades blandas</label>
+                        <select class="select2 form-control" name="habilidades" multiple="multiple" id="habilidades">
+                            @foreach (var habilidad in ViewData["habilidades"] as List<TestHabilidadesBlanda>)
+                            {
+                                <option value="@habilidad.IdHabilidad">@habilidad.Nombre</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="my-select">Agregar Teléfono  <input type="button" id="btAgregarNumero" class="btn btn-primary" value="+"></label>
+                        <div class="listatelefonos">
+                            <input value="" class="form-control" type="text" name="telefonos" maxlength="8">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label for="my-input">Nombre Completo</label>
+                        <input id="nombrecompleto" class="form-control" type="text" name="nombrecompleto" value="@TestUsuario.NombreCompleto" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="my-input">Nombre de Usuario</label>
+                        <input id="nombreusuario" class="form-control" type="text" name="nombreusuario" value="@TestUsuario.NombreUsuario" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="my-input">Clave</label>
+                        <input id="clave" class="form-control" type="text" name="clave" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="my-input">Correo</label>
+                        <input id="correo" class="form-control" type="email" name="correo" value="@TestUsuario.Correo" required>
+                    </div>
+
+                </div>
+
+                <div class="col-sm-12 col-md-12 text-right">
+                    <input id="btnresgistro" class="btn btn-primary" value="@(TestUsuario.IdUsuario>0?"Actualizar":"Registrar")">
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js" integrity="sha512-0XDfGxFliYJPFrideYOoxdgNIvrwGTLnmK20xZbCAvPfLGQMzHUsaqZK8ZoH+luXGRxTrS46+Aq400nCnAT0/w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="~/js/registro.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+        $(".select2").select2({
+        tags: false,
+        tokenSeparators: [',', ' ']
+    })
+</script>

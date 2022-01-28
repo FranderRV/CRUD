@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "";
+}
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="~/css/login.css" rel="stylesheet" >
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+
+    <div class="fadeIn first">
+      <img src="~/img/GISSA.png" id="icon" alt="User Icon" />
+    </div>
+
+
+    <form method="POST" asp-action="Login" asp-controller="Login">
+      <input type="text" id="login" class="fadeIn second" name="usuarioNombre" placeholder="NOMBREUSUARIO">
+      <input type="password" id="password" class="fadeIn third" name="clave" placeholder="CONTRASEÑA">
+      <input type="submit" class="fadeIn fourth" value="INGRESAR">
+    </form>
+
+    <div id="formFooter">
+      <a asp-action="Registro" asp-controller="Login" class="underlineHover">Registrar</a>
+    </div>
+
+  </div>
+</div>
+
+

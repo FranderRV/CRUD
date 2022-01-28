@@ -1,0 +1,104 @@
+﻿@using GISSA.Models
+@{
+    ViewData["Title"] = "Registro";
+    Layout = "~/Views/Shared/DashboardLayout.cshtml";
+    TestUsuario TestUsuario = ViewData["TestUsuario"] as TestUsuario;
+    List<int> listaHabilidadesUsuario = ViewData["habilidadesUsuario"] as List<int>;
+    List<dynamic> listaTiposUsuarios = new List<dynamic>();
+    listaTiposUsuarios.Add(new { Valor="A",Nombre="Administrador" });
+    listaTiposUsuarios.Add(new { Valor="C",Nombre="Consultor" }); 
+
+    List<dynamic> listaTiposIdentificacion = new List<dynamic>();
+    listaTiposIdentificacion.Add(new { Valor="N",Nombre="Nacional" });
+    listaTiposIdentificacion.Add(new { Valor="E",Nombre="Extranjero" }); 
+
+}
+<div class="container">
+
+    <h1 class="mt-5 text-center">REGISTRO FORMULARIOS</h1>
+
+    <div class="mt-5">
+        <form method="POST" asp-action="@(TestUsuario.IdUsuario>0?"Actualizar":"Registrar")" asp-controller="Usuario" id="formulario">
+
+            <input type="hidden" value="@TestUsuario.IdUsuario" id="idUsuario" name="idUsuario">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label for="my-select">Tipo de Usuario</label>
+                        <select id="my-select" class="form-control" name="tipoUsuario">
+                        @foreach (var tipo in listaTiposUsuarios)
+                            {
+                                 @: <option value="@tipo.Valor" @((TestUsuario.TipoUsuario is null)?"" : (TestUsuario.TipoUsuario==tipo.Valor?"selected":"")) >@tipo.Nombre</option>
+                             
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="my-select">Tipo de Identificación</label>
+                        <select id="tipoIdentificacion" class="form-control" name="tipoIdentificacion">
+                            @foreach (var tipo in listaTiposIdentificacion)
+                            {
+                                 @: <option value="@tipo.Valor" @((TestUsuario.TipoIdentificacion is null)?"" : (TestUsuario.TipoIdentificacion==tipo.Valor?"selected":"")) >@tipo.Nombre</option>
+                             
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="my-input">Cédula</label>
+                        <input id="cedula" class="form-control" type="text" name="cedula" value="@TestUsuario.Cedula" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="my-select">Habilidades blandas</label>
+                        <select class="select2 form-control" name="habilidades" multiple="multiple" id="habilidades">
+                            @foreach (var habilidad in ViewData["habilidades"] as List<TestHabilidadesBlanda>)
+                            {
+                                 @: <option value="@habilidad.IdHabilidad" @(listaHabilidadesUsuario.Contains(habilidad.IdHabilidad) ? "selected" : "") >@habilidad.Nombre</option>
+                             
+                            }
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="my-select">Agregar Teléfono  <input type="button" id="btAgregarNumero" class="btn btn-primary" value="+"></label>
+                        <div class="listatelefonos">
+                            <input value="" class="form-control" type="text" name="telefonos" maxlength="8">
+                            <hr />
+                            @foreach(var item in ViewData["telefonosUsuarios"] as List<TestUsuariosTelefono>)
+                            {
+                            <input value="@item.Telefono" class="form-control" type="text" name="telefonos" maxlength="8">
+                            <hr />
+                            }
+                        </div> 
+                    </div>
+
+
+                </div>
+
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label for="my-input">Nombre Completo</label>
+                        <input id="nombrecompleto" class="form-control" type="text" name="nombrecompleto" value="@TestUsuario.NombreCompleto" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="my-input">Nombre de Usuario</label>
+                        <input id="nombreusuario" class="form-control" type="text" name="nombreusuario" value="@TestUsuario.NombreUsuario" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="my-input">Clave</label>
+                        <input id="clave" class="form-control" type="password" name="clave" minlength="6" maxlength="30" required>
+                        <span id="mensajeclave"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="my-input">Correo</label>
+                        <input id="correo" class="form-control" type="email" name="correo" value="@TestUsuario.Correo" required>
+                    </div>
+
+                    <input id="btnresgistro" class="btn btn-primary" value="@(TestUsuario.IdUsuario>0?"Actualizar":"Registrar")">
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>

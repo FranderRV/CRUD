@@ -1,0 +1,49 @@
+﻿@using GISSA.Models
+@{
+    ViewData["Title"] = "Usuarios";
+    Layout = "~/Views/Shared/DashboardLayout.cshtml";
+}
+<div class="container">
+
+    <table class="table table-light">
+        <thead class="thead-light">
+            <tr>
+                <th>Tipo Usuario</th>
+                <th>Tipo Identificación</th>
+                <th>Cédula</th>
+                <th>Nombre Completo</th>
+                <th>Nombre Usuario</th>
+                <th>Correo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var usuario in ViewData["usuarios"] as List<TestUsuario>)
+            {
+                <tr>
+                    <td>@(usuario.TipoUsuario.Equals("A")?"Admistrador":"Consultor")</td>
+                    <td>@(usuario.TipoIdentificacion.Equals("N")?"Nacional":"Extranjero")</td>
+                    <td>@usuario.Cedula</td>
+                    <td>@usuario.NombreCompleto</td>
+                    <td>@usuario.NombreUsuario</td>
+                    <td>@usuario.Correo</td>
+                    <td colspan="2">
+
+                    <td>
+                        <a asp-action="Eliminar" asp-controller="Usuario" asp-route-id="@usuario.IdUsuario"
+                       class="btn btn-danger">Eliminar</a>
+                    </td>
+                    <td>
+                        <a asp-action="Actualizar" asp-controller="Dashboard" asp-route-id="@usuario.IdUsuario"
+                       class="btn btn-warning text-white">Editar</a>
+                    </td>
+
+
+                    </td>
+
+                </tr>
+
+            }
+        </tbody>
+    </table>
+</div>

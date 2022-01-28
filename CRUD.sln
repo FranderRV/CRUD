@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GISSA", "CRUD\GISSA.csproj", "{D0018C33-14BE-4E80-8B61-EC315652D202}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D0018C33-14BE-4E80-8B61-EC315652D202}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0018C33-14BE-4E80-8B61-EC315652D202}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0018C33-14BE-4E80-8B61-EC315652D202}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0018C33-14BE-4E80-8B61-EC315652D202}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {508273C8-A451-4E5E-AEE9-0DE7861806E0}
+	EndGlobalSection
+EndGlobal
